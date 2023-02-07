@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module EzGraphs
   class Graph
     attr_accessor :nodes
 
-    def initialize(nodes=[])
+    def initialize(nodes = [])
       @nodes = nodes
     end
 
