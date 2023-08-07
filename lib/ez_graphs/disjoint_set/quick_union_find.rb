@@ -1,10 +1,13 @@
-class UnionQuickFind
+class QuickUnionFind
   def initialize(n)
     @root = Array.new(n) { |i| i }
   end
 
   def find(x)
-    root[x]
+    while x != root[x]
+      x = root[x]
+    end
+    x
   end
 
   def union(x, y)
@@ -12,9 +15,8 @@ class UnionQuickFind
     root_y = find(y)
     return if root_x == root_y
 
-    root.each do |i|
-      root[i] = root_x if root[i] == root_y
-    end
+    root[root_y] = root_x
+    root
   end
 
   def connected?(x, y)
@@ -27,7 +29,7 @@ class UnionQuickFind
 end
 
 # # Test Case
-# uf = UnionQuickFind.new(10)
+# uf = QuickUnionFind.new(10)
 # # 1-2-5-6-7 3-8-9 4
 # uf.union(1, 2)
 # uf.union(2, 5)
