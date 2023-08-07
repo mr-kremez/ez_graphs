@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class UnionQuickFind
-  def initialize(n)
-    @root = Array.new(n) { |i| i }
+  def initialize(graph_size)
+    @root = Array.new(graph_size) { |i| i }
   end
 
-  def find(x)
-    root[x]
+  def find(vertex_x)
+    root[vertex_x]
   end
 
-  def union(x, y)
-    root_x= find(x)
-    root_y = find(y)
+  def union(vertex_x, vertex_y)
+    root_x = find(vertex_x)
+    root_y = find(vertex_y)
     return if root_x == root_y
 
     root.each do |i|
@@ -17,8 +19,8 @@ class UnionQuickFind
     end
   end
 
-  def connected?(x, y)
-    find(x) == find(y)
+  def connected?(vertex_x, vertex_y)
+    find(vertex_x) == find(vertex_y)
   end
 
   private
