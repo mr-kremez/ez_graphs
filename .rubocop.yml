@@ -14,3 +14,10 @@ StringLiterals:
 
 Style/Documentation:
   Enabled: false
+
+AllCops:
+  SuggestExtensions: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
