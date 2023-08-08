@@ -11,8 +11,9 @@ module EzGraphs
       end
 
       def find(vertex_x)
-        vertex_x = root[vertex_x] while vertex_x != root[vertex_x]
-        vertex_x
+        return vertex_x if vertex_x == root[vertex_x]
+
+        root[vertex_x] = find(root[vertex_x])
       end
 
       def union(vertex_x, vertex_y)
