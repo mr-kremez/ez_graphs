@@ -34,7 +34,7 @@ end
 
 # # Test Case
 # uf = UnionQuickFind.new(graph_size: 10)
-# # 1-2-5-6-7 3-8-9 4
+# # 0-1-2-5-6-7 3-8-9 4
 # uf.union(1, 2)
 # uf.union(2, 5)
 # uf.union(5, 6)
@@ -44,7 +44,7 @@ end
 # puts uf.connected?(1, 5) => true
 # puts uf.connected?(5, 7) => true
 # puts uf.connected?(4, 9) => false
-# # 1-2-5-6-7 3-8-9-4
+# # 0-1-2-5-6-7 3-8-9-4
 # uf.union(9, 4)
 # puts uf.connected?(4, 9) => true
 #

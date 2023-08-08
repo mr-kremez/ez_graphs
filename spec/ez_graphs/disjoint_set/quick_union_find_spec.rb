@@ -4,7 +4,7 @@ RSpec.describe EzGraphs::DisjointSet::QuickUnionFind do
   subject { described_class.new(root: root, rank: rank) }
 
   # 1-2-5-6-7 3-8-9 4
-  let(:root) { [0, 1, 1, 3, 4, 1, 1, 1, 3, 3] }
+  let(:root) { [1, 1, 1, 3, 4, 1, 1, 1, 3, 3] }
   let(:rank) { [0, 1, 0, 1, 0, 0, 0, 0, 0, 0] }
 
   describe '#find' do
@@ -17,10 +17,10 @@ RSpec.describe EzGraphs::DisjointSet::QuickUnionFind do
   end
 
   describe '#union' do
-    # 1-2-5-6-7 3-8-9-4
+    # 0-1-2-5-6-7 3-8-9-4
     it 'properly merges unions' do
       subject.union(9, 4)
-      expect(subject.root).to eq([0, 1, 1, 3, 3, 1, 1, 1, 3, 3])
+      expect(subject.root).to eq([1, 1, 1, 3, 3, 1, 1, 1, 3, 3])
       expect(subject.rank).to eq([0, 1, 0, 1, 0, 0, 0, 0, 0, 0])
     end
   end
@@ -36,6 +36,20 @@ RSpec.describe EzGraphs::DisjointSet::QuickUnionFind do
       expect(subject.connected?(1, 3)).to be(false)
       expect(subject.connected?(8, 4)).to be(false)
       expect(subject.connected?(5, 4)).to be(false)
+    end
+  end
+
+  describe '#num_of_isolated_sets' do
+    it 'properly counts number of isolated sets' do
+      expect(subject.num_of_isolated_sets).to eq(3)
+    end
+
+    context 'when there 2 isolated sets' do
+      let(:root) { [1, 1, 1, 3, 3, 1, 1, 1, 3, 3] }
+
+      it 'returns 2' do
+        expect(subject.num_of_isolated_sets).to eq(2)
+      end
     end
   end
 end

@@ -30,6 +30,14 @@ module EzGraphs
         find(vertex_x) == find(vertex_y)
       end
 
+      def num_of_isolated_sets
+        count = 0
+        root.each_with_index do |root, i|
+          count += 1 if root == i
+        end
+        count
+      end
+
       private
 
       def union_roots_by_rank(root_x, root_y)
@@ -45,7 +53,7 @@ end
 
 # # Test Case
 # uf = QuickUnionFind.new(graph_size: 10)
-# # 1-2-5-6-7 3-8-9 4  @rank=[0, 1, 0, 1, 0, 0, 0, 0, 0, 0], @root=[0, 1, 1, 3, 4, 1, 1, 1, 3, 3]
+# # 0-1-2-5-6-7 3-8-9 4  @rank=[0, 1, 0, 1, 0, 0, 0, 0, 0, 0], @root=[1, 1, 1, 3, 4, 1, 1, 1, 3, 3]
 # uf.union(1, 2)
 # uf.union(2, 5)
 # uf.union(5, 6)
@@ -55,7 +63,7 @@ end
 # puts uf.connected?(1, 5) => true
 # puts uf.connected?(5, 7) => true
 # puts uf.connected?(4, 9) => false
-# # 1-2-5-6-7 3-8-9-4
-# uf.union(9, 4) @rank=[0, 1, 0, 1, 0, 0, 0, 0, 0, 0], @root=[0, 1, 1, 3, 3, 1, 1, 1, 3, 3]
+# # 0-1-2-5-6-7 3-8-9-4
+# uf.union(9, 4) @rank=[0, 1, 0, 1, 0, 0, 0, 0, 0, 0], @root=[1, 1, 1, 3, 3, 1, 1, 1, 3, 3]
 # puts uf.connected?(4, 9) => true
 #
